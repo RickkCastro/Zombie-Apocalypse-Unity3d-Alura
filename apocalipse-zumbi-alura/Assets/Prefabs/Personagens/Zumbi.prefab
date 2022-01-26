@@ -650,6 +650,8 @@ MonoBehaviour:
   SomDeMorte: {fileID: 8300000, guid: f85f0d673b54ff3429fd77543d83179a, type: 3}
   KitMedicoPrefab: {fileID: 1060151288946202, guid: 6150c6f66b7034ec5b3672478195682a,
     type: 3}
+  ZombieBlood: {fileID: 2234796427395333869, guid: 011d24e328159e84b9977bbbd10e6393,
+    type: 3}
   MeuGerrador: {fileID: 0}
 --- !u!54 &54163392757231022
 Rigidbody:

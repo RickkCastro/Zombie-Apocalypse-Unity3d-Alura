@@ -6,5 +6,7 @@ public interface IMatavel
 {
     void TomarDano(int dano);
 
+    void ParticulaSangue(Vector3 posicao, Quaternion rotacao);
+
     void Morrer();
 }

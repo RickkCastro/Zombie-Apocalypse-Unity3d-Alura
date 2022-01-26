@@ -22,13 +22,18 @@ public class Bala : MonoBehaviour {
 
     void OnTriggerEnter(Collider objetoDeColisao)
     {
+        Quaternion rotacaoOpostaBala = Quaternion.LookRotation(-transform.forward);
         switch(objetoDeColisao.tag)
         {
             case "Inimigo":
-                objetoDeColisao.GetComponent<ControlaInimigo>().TomarDano(1);
+                ControlaInimigo inimigo = objetoDeColisao.GetComponent<ControlaInimigo>();
+                inimigo.TomarDano(1);
+                inimigo.ParticulaSangue(transform.position, rotacaoOpostaBala);
                 break;
             case "Boss":
-                objetoDeColisao.GetComponent<ControlaBoss>().TomarDano(1);
+                ControlaBoss boss = objetoDeColisao.GetComponent<ControlaBoss>();
+                boss.TomarDano(1);
+                boss.ParticulaSangue(transform.position, rotacaoOpostaBala);
                 break;
         }
 

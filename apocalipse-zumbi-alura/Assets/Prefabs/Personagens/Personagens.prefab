@@ -3107,6 +3107,8 @@ MonoBehaviour:
   scriptControlaInterface: {fileID: 0}
   SomDeDano: {fileID: 8300000, guid: c664dfdae3a77954d806753678c2528b, type: 3}
   statusJogador: {fileID: 0}
+  PlayerBlood: {fileID: 2234796427395333869, guid: 280487da1c7d1f44ba90a1ee1c15ccab,
+    type: 3}
 --- !u!114 &114240463659201816
 MonoBehaviour:
   m_ObjectHideFlags: 0

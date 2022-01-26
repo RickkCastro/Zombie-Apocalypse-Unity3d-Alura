@@ -8,6 +8,7 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     public GameObject Jogador;
     public AudioClip SomDeMorte;
     public GameObject KitMedicoPrefab;
+    public GameObject ZombieBlood;
 
     private MovimentoPersonagem movimentaInimigo;
     private AnimacaoPersonagem animacaoInimigo;
@@ -19,6 +20,8 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     private float TempoEntrePosicoesAleatorias = 4f;
 
     private float ChanceGerrarKitMedico = 0.08f;
+
+    public Transform Boss;
 
     [HideInInspector]
     public GeradorZumbis MeuGerrador;
@@ -40,9 +43,28 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     {
         float distancia = Vector3.Distance(transform.position, Jogador.transform.position);
 
-        if(distancia > 18) //Nao vendo o jogador
+        if(distancia > 30) //Nao vendo o jogador
         {
-            Vagar ();
+            if(GameObject.FindGameObjectWithTag("Boss") != null)
+            {
+                Boss = GameObject.FindGameObjectWithTag("Boss").transform;
+                if(Vector3.Distance(transform.position, Boss.position) < 15)
+                {
+                    direcao = Boss.position - transform.position;
+
+                    movimentaInimigo.Movimentar(direcao, statusInimigo.Velocidade);
+
+                    animacaoInimigo.Atacar(false);
+                }
+                else
+                {
+                    Vagar();
+                }
+            }
+            else
+            {
+                Vagar();
+            }
         }
         else if (distancia > 2.5) //vendo o jogador
         {
@@ -95,7 +117,11 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     void AtacaJogador ()
     {
         int dano = Random.Range(20, 30);
-        Jogador.GetComponent<ControlaJogador>().TomarDano(dano);
+        ControlaJogador jogador = Jogador.GetComponent<ControlaJogador>();
+
+        jogador.TomarDano(dano);
+        Quaternion rotacaoAtaque = Quaternion.LookRotation(-transform.forward);
+        jogador.ParticulaSangue(jogador.transform.position, rotacaoAtaque);
     }
 
     void AleatorizarZumbi ()
@@ -111,6 +137,11 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
         {
             Morrer();
         }
+    }
+
+    public void ParticulaSangue(Vector3 posicao, Quaternion rotacao)
+    {
+        Instantiate(ZombieBlood, posicao, rotacao);
     }
 
     public void Morrer()

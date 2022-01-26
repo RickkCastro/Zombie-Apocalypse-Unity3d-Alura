@@ -49,6 +49,6 @@ MonoBehaviour:
     m_Bits: 512
   TempoGerarZumbi: 1
   distanciaDeGeracao: 3
-  DistanciaDoJogadorParaGeracao: 20
+  DistanciaDoJogadorParaGeracao: 18
   MaxZumbisVivos: 2
   TempoProxDificuldade: 20

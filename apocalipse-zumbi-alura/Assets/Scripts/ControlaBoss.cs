@@ -16,6 +16,7 @@ public class ControlaBoss : MonoBehaviour, IMatavel
     public Slider BarraDeVida;
     public Image ImgBarraDeVida;
     public Color CorVidaMax, CorVidaMin;
+    public GameObject ZombieBlood;
 
     private void Start()
     {
@@ -66,6 +67,11 @@ public class ControlaBoss : MonoBehaviour, IMatavel
         {
             Morrer();
         }
+    }
+
+    public void ParticulaSangue(Vector3 posicao, Quaternion rotacao)
+    {
+        Instantiate(ZombieBlood, posicao, rotacao);
     }
 
     public void Morrer()

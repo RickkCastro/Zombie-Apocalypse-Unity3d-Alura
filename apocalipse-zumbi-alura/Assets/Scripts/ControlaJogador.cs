@@ -14,6 +14,8 @@ public class ControlaJogador : MonoBehaviour, IMatavel, ICuravel
     private AnimacaoPersonagem animacaoJogador;
     public Status statusJogador;
 
+    public GameObject PlayerBlood;
+
     private void Start()
     {
         meuMovimentoJogador = GetComponent<MovimentoJogador>();
@@ -66,5 +68,10 @@ public class ControlaJogador : MonoBehaviour, IMatavel, ICuravel
         }
 
         scriptControlaInterface.AtualizarSliderVidaJogador();
+    }
+
+    public void ParticulaSangue(Vector3 posicao, Quaternion rotacao)
+    {
+        Instantiate(PlayerBlood, posicao, rotacao);
     }
 }

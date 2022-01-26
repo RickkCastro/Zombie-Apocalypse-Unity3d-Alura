@@ -69,7 +69,7 @@ public class ControlaInterface : MonoBehaviour {
 
     public void Reiniciar ()
     {
-        SceneManager.LoadScene("game");
+        SceneManager.LoadScene("Game");
     }
 
     public void AtualizarZumbisMortos()

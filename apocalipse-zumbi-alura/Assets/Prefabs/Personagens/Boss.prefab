@@ -368,6 +368,8 @@ MonoBehaviour:
   ImgBarraDeVida: {fileID: 352700442563152409}
   CorVidaMax: {r: 0.03137255, g: 0.74509805, b: 0.07450981, a: 1}
   CorVidaMin: {r: 0.74509805, g: 0.031372547, b: 0.04454199, a: 1}
+  ZombieBlood: {fileID: 2234796427395333869, guid: 011d24e328159e84b9977bbbd10e6393,
+    type: 3}
 --- !u!114 &163056880677715449
 MonoBehaviour:
   m_ObjectHideFlags: 0
