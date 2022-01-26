@@ -8,11 +8,13 @@ public class GeradorZumbis : MonoBehaviour {
     public LayerMask LayerZumbi;
     private GameObject jogador;
 
-    public float TempoGerarZumbi = 1;
-    private float contadorTempo = 0;
+    public float TempoMinGerarZumbi;
+    public float TempoMaxGerarZumbi;
+    
+    private float TempoGerarZumbi;
+    private float contadorTempo;
 
-    public float distanciaDeGeracao = 3;
-    public float DistanciaDoJogadorParaGeracao = 20;
+    public float distanciaDeGeracao;
 
     public float MaxZumbisVivos;
     private int QuantZumbisVivos;
@@ -20,34 +22,43 @@ public class GeradorZumbis : MonoBehaviour {
     public float TempoProxDificuldade;
     private float ContadorDeAumentarDificuldade;
 
+    private SphereCollider sphereCollider;
+
     private void Start()
     {
         jogador = GameObject.FindWithTag("Jogador");
         ContadorDeAumentarDificuldade = TempoProxDificuldade;
 
-        bool PossoGerrarZumbisPelaDist =
-            Vector3.Distance(transform.position, jogador.transform.position) > DistanciaDoJogadorParaGeracao;
+        sphereCollider = GetComponent<SphereCollider>();
+        sphereCollider.radius = distanciaDeGeracao;
 
         for (int i = 0; i < MaxZumbisVivos; i++)
         {
-            if(PossoGerrarZumbisPelaDist)
+            if (!ICanSee())
                 StartCoroutine(GerarNovoZumbi());
         }
+
+        TempoGerarZumbi = Random.Range(TempoMinGerarZumbi, TempoMaxGerarZumbi);
+    }
+
+    private bool ICanSee()
+    {
+        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+        return GeometryUtility.TestPlanesAABB(planes, sphereCollider.bounds);
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update () 
+    {
 
-        bool PossoGerrarZumbisPelaDist =
-            Vector3.Distance(transform.position, jogador.transform.position) > DistanciaDoJogadorParaGeracao;
-
-        if (PossoGerrarZumbisPelaDist && QuantZumbisVivos < MaxZumbisVivos)
+        if (!ICanSee() && QuantZumbisVivos < MaxZumbisVivos)
         {
             contadorTempo += Time.deltaTime;
 
             if (contadorTempo >= TempoGerarZumbi)
             {
                 StartCoroutine(GerarNovoZumbi());
+                TempoGerarZumbi = Random.Range(TempoMinGerarZumbi, TempoMaxGerarZumbi);
                 contadorTempo = 0;
             }
         }

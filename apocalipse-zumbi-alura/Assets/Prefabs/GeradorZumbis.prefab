@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4558820354641208}
   - component: {fileID: 114875949034787928}
+  - component: {fileID: 8782318934505381151}
   m_Layer: 0
   m_Name: GeradorZumbis
-  m_TagString: Untagged
+  m_TagString: Gerador
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,8 +48,21 @@ MonoBehaviour:
   LayerZumbi:
     serializedVersion: 2
     m_Bits: 512
-  TempoGerarZumbi: 1
+  TempoMinGerarZumbi: 1
+  TempoMaxGerarZumbi: 3
   distanciaDeGeracao: 3
-  DistanciaDoJogadorParaGeracao: 18
   MaxZumbisVivos: 2
   TempoProxDificuldade: 20
+--- !u!135 &8782318934505381151
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904409538383494}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}

@@ -11,7 +11,8 @@ public class ControlaBoss : MonoBehaviour, IMatavel
     private Status statusBoss;
     private AnimacaoPersonagem animBoss;
     private MovimentoPersonagem movimentoBoss;
-    
+    private ControlaInterface ScriptControlaInterface;
+
     public GameObject KitMedico;
     public Slider BarraDeVida;
     public Image ImgBarraDeVida;
@@ -25,10 +26,18 @@ public class ControlaBoss : MonoBehaviour, IMatavel
         statusBoss = GetComponent<Status>();
         animBoss = GetComponent<AnimacaoPersonagem>();
         movimentoBoss = GetComponent<MovimentoPersonagem>();
-        
+        ScriptControlaInterface = GameObject.FindObjectOfType(typeof(ControlaInterface)) as ControlaInterface;
+
+        AleatorizarBoss();
         AtualizarInterface();
 
         navAgent.speed = statusBoss.Velocidade;
+    }
+
+    void AleatorizarBoss()
+    {
+        int geraTipoBoss = Random.Range(2, transform.childCount);
+        transform.GetChild(geraTipoBoss).gameObject.SetActive(true);
     }
 
     private void Update()
@@ -77,6 +86,7 @@ public class ControlaBoss : MonoBehaviour, IMatavel
     public void Morrer()
     {
         Instantiate(KitMedico, transform.position, Quaternion.identity);
+        ScriptControlaInterface.AtualizarZumbisMortos();
 
         animBoss.Morrer();
         movimentoBoss.Morrer(0.6f);

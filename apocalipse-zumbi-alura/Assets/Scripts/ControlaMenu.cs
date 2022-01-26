@@ -10,17 +10,14 @@ public class ControlaMenu : MonoBehaviour
     private void Start()
     {
         #if UNITY_2017_1_OR_NEWER || UNITY_EDITOR
-        Debug.Log("IS STANDALONE");
+        //Debug.Log("IS STANDALONE");
         #endif
+        StopAllCoroutines();
     }
 
-    public void PlayGame() => StartCoroutine(ChangeScene("Game"));
+    public void PlayGame() => SceneManager.LoadScene("Game");
 
-    IEnumerator ChangeScene(string name)
-    {
-        yield return new WaitForSeconds(0.3f);
-        SceneManager.LoadScene(name);
-    }
+    public void PlayGameHellMode() => SceneManager.LoadScene("HellMode");
 
     public void OpenCredits() => PanelCredits.SetActive(true);
 

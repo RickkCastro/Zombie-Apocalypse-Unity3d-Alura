@@ -11,6 +11,7 @@ public class Bala : MonoBehaviour {
     private void Start()
     {
         rigidbodyBala = GetComponent<Rigidbody>();
+        Destroy(gameObject, 10);
     }
 
     // Update is called once per frame
@@ -37,6 +38,7 @@ public class Bala : MonoBehaviour {
                 break;
         }
 
-        Destroy(gameObject);
+        if (objetoDeColisao.tag != "Gerador")
+            Destroy(gameObject);
     }
 }

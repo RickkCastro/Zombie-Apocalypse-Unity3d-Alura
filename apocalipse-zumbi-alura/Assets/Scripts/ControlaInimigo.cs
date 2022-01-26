@@ -10,6 +10,8 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     public GameObject KitMedicoPrefab;
     public GameObject ZombieBlood;
 
+    public float DistVendoJogador, DistAtacaJogador;
+
     private MovimentoPersonagem movimentaInimigo;
     private AnimacaoPersonagem animacaoInimigo;
     private Status statusInimigo;
@@ -28,6 +30,7 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
 
     private ControlaInterface ScriptControlaInterface;
 
+
 	// Use this for initialization
 	void Start () {
         Jogador = GameObject.FindWithTag("Jogador");
@@ -43,7 +46,7 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     {
         float distancia = Vector3.Distance(transform.position, Jogador.transform.position);
 
-        if(distancia > 30) //Nao vendo o jogador
+        if(distancia > DistVendoJogador) //Nao vendo o jogador
         {
             if(GameObject.FindGameObjectWithTag("Boss") != null)
             {
@@ -66,7 +69,7 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
                 Vagar();
             }
         }
-        else if (distancia > 2.5) //vendo o jogador
+        else if (distancia > DistAtacaJogador) //vendo o jogador
         {
             direcao = Jogador.transform.position - transform.position;
 

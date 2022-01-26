@@ -44,7 +44,7 @@ public class ControlaInterface : MonoBehaviour {
         int minutos = (int)(Time.timeSinceLevelLoad / 60);
         int segundos = (int)(Time.timeSinceLevelLoad % 60);
         TextoTempoDeSobrevivencia.text = 
-            "Você sobreviveu por " + minutos + "min e " + segundos + "s";
+            "Você sobreviveu por \n" + minutos + "min e " + segundos + "s";
 
         AjustarPontuacaoMaxima(minutos, segundos);
     }
@@ -55,22 +55,25 @@ public class ControlaInterface : MonoBehaviour {
         {
             tempoPontuacaoSalvo = Time.timeSinceLevelLoad;
             TextoPontuacaoMaxima.text = 
-                string.Format("Seu melhor tempo é {0}min e {1}s", min, seg);
+                string.Format("Seu melhor tempo é \n {0}min e {1}s", min, seg);
             PlayerPrefs.SetFloat("PontuacaoMaxima", tempoPontuacaoSalvo);
         }
-        if(TextoPontuacaoMaxima.text == "")
+        else
         {
             min = (int)tempoPontuacaoSalvo / 60;
             seg = (int)tempoPontuacaoSalvo % 60;
             TextoPontuacaoMaxima.text =
-                string.Format("Seu melhor tempo é {0}min e {1}s", min, seg);
+                string.Format("Seu melhor tempo é \n {0}min e {1}s", min, seg);
         }
     }
 
     public void Reiniciar ()
     {
-        SceneManager.LoadScene("Game");
+        Scene CurrentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(CurrentScene.name);
     }
+
+    public void GoToMenu() => SceneManager.LoadScene("Menu");
 
     public void AtualizarZumbisMortos()
     {

@@ -652,6 +652,9 @@ MonoBehaviour:
     type: 3}
   ZombieBlood: {fileID: 2234796427395333869, guid: 011d24e328159e84b9977bbbd10e6393,
     type: 3}
+  DistVendoJogador: 15
+  DistAtacaJogador: 2.5
+  Boss: {fileID: 0}
   MeuGerrador: {fileID: 0}
 --- !u!54 &54163392757231022
 Rigidbody:
@@ -3405,7 +3408,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 614d2a64adcf4434e8a116a2a5302e3b, type: 2}
+  - {fileID: 2100000, guid: 81e9636b7e1fc8b45bcd58639405eea4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
