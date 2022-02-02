@@ -23,5 +23,7 @@ public class ControlaMenu : MonoBehaviour
 
     public void CloseCredits() => PanelCredits.SetActive(false);
 
+    public void CloseApp() => Application.Quit();
+
 
 }
